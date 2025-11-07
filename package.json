@@ -1,6 +1,6 @@
 {
   "name": "nswindow-napi-ac",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A methods collection of using NSWindow native methods in Node.js.",
   "main": "index.js",
   "scripts": {
@@ -17,13 +17,13 @@
     "objective c"
   ],
   "author": {
-    "name": "lowfront",
-    "email": "lowfronterior@gmail.com"
+    "name": "abhinav-shram",
+    "email": "abhinav@shram.ai"
   },
   "license": "MIT",
-  "homepage": "https://github.com/lowfront/nswindow-napi",
+  "homepage": "https://github.com/abhinav-shram/nswindow-napi",
   "bugs": {
-    "url": "https://github.com/lowfront/nswindow-napi/issues"
+    "url": "https://github.com/abhinav-shram/nswindow-napi/issues"
   },
   "gypfile": true,
   "os": [
