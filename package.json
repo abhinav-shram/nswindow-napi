@@ -1,10 +1,10 @@
 {
-  "name": "nswindow-napi",
-  "version": "0.0.3",
+  "name": "nswindow-napi-ac",
+  "version": "0.0.1",
   "description": "A methods collection of using NSWindow native methods in Node.js.",
   "main": "index.js",
   "scripts": {
-    "install": "node install",
+    "install": "node -e \"if (require('os').platform() === 'darwin') { require('child_process').spawnSync('node', ['install'], {stdio: 'inherit'}); }\"",
     "napi-build": "node-gyp rebuild",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +26,9 @@
     "url": "https://github.com/lowfront/nswindow-napi/issues"
   },
   "gypfile": true,
+  "os": [
+    "darwin"
+  ],
   "dependencies": {
     "bindings": "1.5.0"
   }

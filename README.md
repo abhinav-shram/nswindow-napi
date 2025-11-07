@@ -1,6 +1,7 @@
 # NSWindow NAPI
+A collection of using NSWindow native methods in Node.js. Currently, only [collectionBehavior](https://developer.apple.com/documentation/appkit/nswindow/1419471-collectionbehavior?language=objc) and [level](https://developer.apple.com/documentation/appkit/nswindow/1419511-level?language=objc) are implemented. You can use it for `BrowserWindow` on `Electron`.
 
-A methods collection of using NSWindow native methods in Node.js. Currently, only [collectionBehavior](https://developer.apple.com/documentation/appkit/nswindow/1419471-collectionbehavior?language=objc) and [level](https://developer.apple.com/documentation/appkit/nswindow/1419511-level?language=objc) are implemented. You can use it for `BrowserWindow` on `Electron`.
+Works on macOS only, and this is a fork of `https://github.com/fronterior/nswindow-napi`
 
 ## Usage
 ```js

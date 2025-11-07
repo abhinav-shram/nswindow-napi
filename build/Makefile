@@ -47,6 +47,7 @@ CXXFLAGS.target ?= $(CPPFLAGS) $(CXXFLAGS)
 LINK.target ?= $(LINK)
 LDFLAGS.target ?= $(LDFLAGS)
 AR.target ?= $(AR)
+PLI.target ?= pli
 
 # C++ apps need to be linked with g++.
 LINK ?= $(CXX.target)
@@ -60,6 +61,7 @@ CXXFLAGS.host ?= $(CPPFLAGS_host) $(CXXFLAGS_host)
 LINK.host ?= $(CXX.host)
 LDFLAGS.host ?= $(LDFLAGS_host)
 AR.host ?= ar
+PLI.host ?= pli
 
 # Define a dir function that can handle spaces.
 # http://www.gnu.org/software/make/manual/make.html#Syntax-of-Functions
@@ -146,10 +148,10 @@ cmd_pch_mm = $(CC.$(TOOLSET)) $(GYP_PCH_OBJCXXFLAGS) $(DEPFLAGS) -c -o $@ $<
 # Use $(4) for the command, since $(2) and $(3) are used as flag by do_cmd
 # already.
 quiet_cmd_mac_tool = MACTOOL $(4) $<
-cmd_mac_tool = ./gyp-mac-tool $(4) $< "$@"
+cmd_mac_tool = /opt/homebrew/opt/python@3.14/bin/python3.14 gyp-mac-tool $(4) $< "$@"
 
 quiet_cmd_mac_package_framework = PACKAGE FRAMEWORK $@
-cmd_mac_package_framework = ./gyp-mac-tool package-framework "$@" $(4)
+cmd_mac_package_framework = /opt/homebrew/opt/python@3.14/bin/python3.14 gyp-mac-tool package-framework "$@" $(4)
 
 quiet_cmd_infoplist = INFOPLIST $@
 cmd_infoplist = $(CC.$(TOOLSET)) -E -P -Wno-trigraphs -x c $(INFOPLIST_DEFINES) "$<" -o "$@"
@@ -161,8 +163,11 @@ quiet_cmd_copy = COPY $@
 # send stderr to /dev/null to ignore messages when linking directories.
 cmd_copy = ln -f "$<" "$@" 2>/dev/null || (rm -rf "$@" && cp -af "$<" "$@")
 
+quiet_cmd_symlink = SYMLINK $@
+cmd_symlink = ln -sf "$<" "$@"
+
 quiet_cmd_alink = LIBTOOL-STATIC $@
-cmd_alink = rm -f $@ && ./gyp-mac-tool filter-libtool libtool $(GYP_LIBTOOLFLAGS) -static -o $@ $(filter %.o,$^)
+cmd_alink = rm -f $@ && /opt/homebrew/opt/python@3.14/bin/python3.14 gyp-mac-tool filter-libtool libtool $(GYP_LIBTOOLFLAGS) -static -o $@ $(filter %.o,$^)
 
 quiet_cmd_link = LINK($(TOOLSET)) $@
 cmd_link = $(LINK.$(TOOLSET)) $(GYP_LDFLAGS) $(LDFLAGS.$(TOOLSET)) -o "$@" $(LD_INPUTS) $(LIBS)
@@ -326,8 +331,8 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
 endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
-cmd_regen_makefile = cd $(srcdir); /usr/local/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/Users/lowfront/Library/Caches/node-gyp/16.14.2" "-Dnode_gyp_dir=/usr/local/lib/node_modules/npm/node_modules/node-gyp" "-Dnode_lib_file=/Users/lowfront/Library/Caches/node-gyp/16.14.2/<(target_arch)/node.lib" "-Dmodule_root_dir=/Users/lowfront/DEV/Training/napi-test" "-Dnode_engine=v8" "--depth=." "-Goutput_dir=." "--generator-output=build" -I/Users/lowfront/DEV/Training/napi-test/build/config.gypi -I/usr/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/Users/lowfront/Library/Caches/node-gyp/16.14.2/include/node/common.gypi "--toplevel-dir=." binding.gyp
-Makefile: $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/../../../Library/Caches/node-gyp/16.14.2/include/node/common.gypi $(srcdir)/../../../../../usr/local/lib/node_modules/npm/node_modules/node-gyp/addon.gypi
+cmd_regen_makefile = cd $(srcdir); /opt/homebrew/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/Users/apple/Library/Caches/node-gyp/24.8.0" "-Dnode_gyp_dir=/opt/homebrew/lib/node_modules/npm/node_modules/node-gyp" "-Dnode_lib_file=/Users/apple/Library/Caches/node-gyp/24.8.0/<(target_arch)/node.lib" "-Dmodule_root_dir=/Users/apple/Documents/ShramRepos/Untitled/nswindow-napi" "-Dnode_engine=v8" "--depth=." "-Goutput_dir=." "--generator-output=build" -I/Users/apple/Documents/ShramRepos/Untitled/nswindow-napi/build/config.gypi -I/opt/homebrew/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/Users/apple/Library/Caches/node-gyp/24.8.0/include/node/common.gypi "--toplevel-dir=." binding.gyp
+Makefile: $(srcdir)/binding.gyp $(srcdir)/../../../../../../opt/homebrew/lib/node_modules/npm/node_modules/node-gyp/addon.gypi $(srcdir)/build/config.gypi $(srcdir)/../../../../Library/Caches/node-gyp/24.8.0/include/node/common.gypi
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included
