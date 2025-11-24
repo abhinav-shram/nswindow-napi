@@ -20,7 +20,7 @@ CFLAGS_Debug := \
 	-O0 \
 	-gdwarf-2 \
 	-fno-strict-aliasing \
-	-mmacosx-version-min=13.5 \
+	-mmacosx-version-min=10.7 \
 	-arch \
 	arm64 \
 	-Wall \
@@ -35,8 +35,7 @@ CFLAGS_C_Debug :=
 CFLAGS_CC_Debug := \
 	-std=gnu++20 \
 	-stdlib=libc++ \
-	-fno-rtti \
-	-fno-exceptions
+	-fno-rtti
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Debug :=
@@ -51,7 +50,8 @@ INCS_Debug := \
 	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/openssl/openssl/include \
 	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/uv/include \
 	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/zlib \
-	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/v8/include
+	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/v8/include \
+	-I/Users/apple/Documents/ShramRepos/Untitled/nswindow-napi/node_modules/node-addon-api
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=AppKitNAPI' \
@@ -69,7 +69,7 @@ CFLAGS_Release := \
 	-O3 \
 	-gdwarf-2 \
 	-fno-strict-aliasing \
-	-mmacosx-version-min=13.5 \
+	-mmacosx-version-min=10.7 \
 	-arch \
 	arm64 \
 	-Wall \
@@ -84,8 +84,7 @@ CFLAGS_C_Release :=
 CFLAGS_CC_Release := \
 	-std=gnu++20 \
 	-stdlib=libc++ \
-	-fno-rtti \
-	-fno-exceptions
+	-fno-rtti
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Release :=
@@ -100,7 +99,8 @@ INCS_Release := \
 	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/openssl/openssl/include \
 	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/uv/include \
 	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/zlib \
-	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/v8/include
+	-I/Users/apple/Library/Caches/node-gyp/24.8.0/deps/v8/include \
+	-I/Users/apple/Documents/ShramRepos/Untitled/nswindow-napi/node_modules/node-addon-api
 
 OBJS := \
 	$(obj).target/$(TARGET)/AppKitNAPI.o \
@@ -108,6 +108,9 @@ OBJS := \
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
+
+# Make sure our dependencies are built before any of us.
+$(OBJS): | $(builddir)/nothing.a
 
 # CFLAGS et al overrides must be target-local.
 # See "Target-specific Variable Values" in the GNU Make manual.
@@ -144,7 +147,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj)/%.cc FORCE_DO_CMD
 LDFLAGS_Debug := \
 	-undefined dynamic_lookup \
 	-Wl,-search_paths_first \
-	-mmacosx-version-min=13.5 \
+	-mmacosx-version-min=10.7 \
 	-arch \
 	arm64 \
 	-L$(builddir) \
@@ -157,7 +160,7 @@ LIBTOOLFLAGS_Debug := \
 LDFLAGS_Release := \
 	-undefined dynamic_lookup \
 	-Wl,-search_paths_first \
-	-mmacosx-version-min=13.5 \
+	-mmacosx-version-min=10.7 \
 	-arch \
 	arm64 \
 	-L$(builddir) \
@@ -173,7 +176,7 @@ $(builddir)/AppKitNAPI.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(builddir)/AppKitNAPI.node: LIBS := $(LIBS)
 $(builddir)/AppKitNAPI.node: GYP_LIBTOOLFLAGS := $(LIBTOOLFLAGS_$(BUILDTYPE))
 $(builddir)/AppKitNAPI.node: TOOLSET := $(TOOLSET)
-$(builddir)/AppKitNAPI.node: $(OBJS) FORCE_DO_CMD
+$(builddir)/AppKitNAPI.node: $(OBJS) $(builddir)/nothing.a FORCE_DO_CMD
 	$(call do_cmd,solink_module)
 
 all_deps += $(builddir)/AppKitNAPI.node

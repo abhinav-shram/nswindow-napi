@@ -1,44 +1,56 @@
-#ifndef AppKitNAPI_H
-#define AppKitNAPI_H
-#include <node_api.h>
+#include <napi.h>
 
-napi_value GetNSWindowCollectionBehaviorDefault(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorCanJoinAllSpaces(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorMoveToActiveSpace(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorManaged(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorTransient(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorStationary(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorParticipatesInCycle(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorIgnoresCycle(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorFullScreenPrimary(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorFullScreenAuxiliary(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorFullScreenNone(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorFullScreenAllowsTiling(napi_env env, napi_callback_info info);
-napi_value GetNSWindowCollectionBehaviorFullScreenDisallowsTiling(napi_env env, napi_callback_info info);
-napi_value SetCollectionBehavior(napi_env, napi_callback_info);
+Napi::Value
+GetNSWindowCollectionBehaviorDefault(const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorCanJoinAllSpaces(const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorMoveToActiveSpace(const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorManaged(const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorTransient(const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorStationary(const Napi::CallbackInfo &info);
+Napi::Value GetNSWindowCollectionBehaviorParticipatesInCycle(
+    const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorIgnoresCycle(const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorFullScreenPrimary(const Napi::CallbackInfo &info);
+Napi::Value GetNSWindowCollectionBehaviorFullScreenAuxiliary(
+    const Napi::CallbackInfo &info);
+Napi::Value
+GetNSWindowCollectionBehaviorFullScreenNone(const Napi::CallbackInfo &info);
+Napi::Value GetNSWindowCollectionBehaviorFullScreenAllowsTiling(
+    const Napi::CallbackInfo &info);
+Napi::Value GetNSWindowCollectionBehaviorFullScreenDisallowsTiling(
+    const Napi::CallbackInfo &info);
 
-napi_value GetKCGNumReservedWindowLevels(napi_env env, napi_callback_info info);
-napi_value GetKCGNumReservedBaseWindowLevels(napi_env env, napi_callback_info info);
-napi_value GetKCGBaseWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGMinimumWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGMaximumWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGDesktopWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGDesktopIconWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGBackstopMenuLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGNormalWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGFloatingWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGTornOffMenuWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGModalPanelWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGUtilityWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGDockWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGMainMenuWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGStatusWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGPopUpMenuWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGOverlayWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGHelpWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGDraggingWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGScreenSaverWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGAssistiveTechHighWindowLevel(napi_env env, napi_callback_info info);
-napi_value GetKCGCursorWindowLevel(napi_env env, napi_callback_info info);
-napi_value SetLevel(napi_env, napi_callback_info);
-#endif
+void SetCollectionBehavior(const Napi::CallbackInfo &info);
+
+Napi::Value GetKCGNumReservedWindowLevels(const Napi::CallbackInfo &info);
+Napi::Value GetKCGNumReservedBaseWindowLevels(const Napi::CallbackInfo &info);
+Napi::Value GetKCGBaseWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGMinimumWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGMaximumWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGDesktopWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGDesktopIconWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGBackstopMenuLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGNormalWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGFloatingWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGTornOffMenuWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGModalPanelWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGUtilityWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGDockWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGMainMenuWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGStatusWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGPopUpMenuWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGOverlayWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGHelpWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGDraggingWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGScreenSaverWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGAssistiveTechHighWindowLevel(const Napi::CallbackInfo &info);
+Napi::Value GetKCGCursorWindowLevel(const Napi::CallbackInfo &info);
+
+void SetLevel(const Napi::CallbackInfo &info);

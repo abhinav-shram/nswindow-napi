@@ -1,56 +1,101 @@
 #include "NSWindow.h"
+#include <napi.h>
 
-napi_value Init(napi_env env, napi_value exports) {
-  napi_status status;
+Napi::Object Init(Napi::Env env, Napi::Object exports) {
+  exports.Set(Napi::String::New(env, "GetNSWindowCollectionBehaviorDefault"),
+              Napi::Function::New(env, GetNSWindowCollectionBehaviorDefault));
+  exports.Set(
+      Napi::String::New(env, "GetNSWindowCollectionBehaviorCanJoinAllSpaces"),
+      Napi::Function::New(env, GetNSWindowCollectionBehaviorCanJoinAllSpaces));
+  exports.Set(
+      Napi::String::New(env, "GetNSWindowCollectionBehaviorMoveToActiveSpace"),
+      Napi::Function::New(env, GetNSWindowCollectionBehaviorMoveToActiveSpace));
+  exports.Set(Napi::String::New(env, "GetNSWindowCollectionBehaviorManaged"),
+              Napi::Function::New(env, GetNSWindowCollectionBehaviorManaged));
+  exports.Set(Napi::String::New(env, "GetNSWindowCollectionBehaviorTransient"),
+              Napi::Function::New(env, GetNSWindowCollectionBehaviorTransient));
+  exports.Set(
+      Napi::String::New(env, "GetNSWindowCollectionBehaviorStationary"),
+      Napi::Function::New(env, GetNSWindowCollectionBehaviorStationary));
+  exports.Set(Napi::String::New(
+                  env, "GetNSWindowCollectionBehaviorParticipatesInCycle"),
+              Napi::Function::New(
+                  env, GetNSWindowCollectionBehaviorParticipatesInCycle));
+  exports.Set(
+      Napi::String::New(env, "GetNSWindowCollectionBehaviorIgnoresCycle"),
+      Napi::Function::New(env, GetNSWindowCollectionBehaviorIgnoresCycle));
+  exports.Set(
+      Napi::String::New(env, "GetNSWindowCollectionBehaviorFullScreenPrimary"),
+      Napi::Function::New(env, GetNSWindowCollectionBehaviorFullScreenPrimary));
+  exports.Set(Napi::String::New(
+                  env, "GetNSWindowCollectionBehaviorFullScreenAuxiliary"),
+              Napi::Function::New(
+                  env, GetNSWindowCollectionBehaviorFullScreenAuxiliary));
+  exports.Set(
+      Napi::String::New(env, "GetNSWindowCollectionBehaviorFullScreenNone"),
+      Napi::Function::New(env, GetNSWindowCollectionBehaviorFullScreenNone));
+  exports.Set(Napi::String::New(
+                  env, "GetNSWindowCollectionBehaviorFullScreenAllowsTiling"),
+              Napi::Function::New(
+                  env, GetNSWindowCollectionBehaviorFullScreenAllowsTiling));
+  exports.Set(
+      Napi::String::New(
+          env, "GetNSWindowCollectionBehaviorFullScreenDisallowsTiling"),
+      Napi::Function::New(
+          env, GetNSWindowCollectionBehaviorFullScreenDisallowsTiling));
+  exports.Set(Napi::String::New(env, "SetCollectionBehavior"),
+              Napi::Function::New(env, SetCollectionBehavior));
 
-  napi_property_descriptor descriptors[] = {
-    {"GetNSWindowCollectionBehaviorDefault", 0, GetNSWindowCollectionBehaviorDefault, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorCanJoinAllSpaces", 0, GetNSWindowCollectionBehaviorCanJoinAllSpaces, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorMoveToActiveSpace", 0, GetNSWindowCollectionBehaviorMoveToActiveSpace, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorManaged", 0, GetNSWindowCollectionBehaviorManaged, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorTransient", 0, GetNSWindowCollectionBehaviorTransient, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorStationary", 0, GetNSWindowCollectionBehaviorStationary, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorParticipatesInCycle", 0, GetNSWindowCollectionBehaviorParticipatesInCycle, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorIgnoresCycle", 0, GetNSWindowCollectionBehaviorIgnoresCycle, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorFullScreenPrimary", 0, GetNSWindowCollectionBehaviorFullScreenPrimary, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorFullScreenAuxiliary", 0, GetNSWindowCollectionBehaviorFullScreenAuxiliary, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorFullScreenNone", 0, GetNSWindowCollectionBehaviorFullScreenNone, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorFullScreenAllowsTiling", 0, GetNSWindowCollectionBehaviorFullScreenAllowsTiling, 0, 0, 0, napi_default, 0},
-    {"GetNSWindowCollectionBehaviorFullScreenDisallowsTiling", 0, GetNSWindowCollectionBehaviorFullScreenDisallowsTiling, 0, 0, 0, napi_default, 0},
-    {"SetCollectionBehavior", 0, SetCollectionBehavior, 0, 0, 0, napi_default, 0},
-    
-    {"GetKCGNumReservedWindowLevels", 0, GetKCGNumReservedWindowLevels, 0, 0, 0, napi_default, 0},
-    {"GetKCGNumReservedBaseWindowLevels", 0, GetKCGNumReservedBaseWindowLevels, 0, 0, 0, napi_default, 0},
-    {"GetKCGBaseWindowLevel", 0, GetKCGBaseWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGMinimumWindowLevel", 0, GetKCGMinimumWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGMaximumWindowLevel", 0, GetKCGMaximumWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGDesktopWindowLevel", 0, GetKCGDesktopWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGDesktopIconWindowLevel", 0, GetKCGDesktopIconWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGBackstopMenuLevel", 0, GetKCGBackstopMenuLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGNormalWindowLevel", 0, GetKCGNormalWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGFloatingWindowLevel", 0, GetKCGFloatingWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGTornOffMenuWindowLevel", 0, GetKCGTornOffMenuWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGModalPanelWindowLevel", 0, GetKCGModalPanelWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGUtilityWindowLevel", 0, GetKCGUtilityWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGDockWindowLevel", 0, GetKCGDockWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGMainMenuWindowLevel", 0, GetKCGMainMenuWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGStatusWindowLevel", 0, GetKCGStatusWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGPopUpMenuWindowLevel", 0, GetKCGPopUpMenuWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGOverlayWindowLevel", 0, GetKCGOverlayWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGHelpWindowLevel", 0, GetKCGHelpWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGDraggingWindowLevel", 0, GetKCGDraggingWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGScreenSaverWindowLevel", 0, GetKCGScreenSaverWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGAssistiveTechHighWindowLevel", 0, GetKCGAssistiveTechHighWindowLevel, 0, 0, 0, napi_default, 0},
-    {"GetKCGCursorWindowLevel", 0, GetKCGCursorWindowLevel, 0, 0, 0, napi_default, 0},
-    {"SetLevel", 0, SetLevel, 0, 0, 0, napi_default, 0},  };
-
-  status = napi_define_properties(env, exports, sizeof(descriptors)/sizeof(napi_property_descriptor), descriptors);
-  if (status != napi_ok) {
-    napi_throw_error(env, NULL, "Fail to define");
-    return NULL;
-  }
+  exports.Set(Napi::String::New(env, "GetKCGNumReservedWindowLevels"),
+              Napi::Function::New(env, GetKCGNumReservedWindowLevels));
+  exports.Set(Napi::String::New(env, "GetKCGNumReservedBaseWindowLevels"),
+              Napi::Function::New(env, GetKCGNumReservedBaseWindowLevels));
+  exports.Set(Napi::String::New(env, "GetKCGBaseWindowLevel"),
+              Napi::Function::New(env, GetKCGBaseWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGMinimumWindowLevel"),
+              Napi::Function::New(env, GetKCGMinimumWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGMaximumWindowLevel"),
+              Napi::Function::New(env, GetKCGMaximumWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGDesktopWindowLevel"),
+              Napi::Function::New(env, GetKCGDesktopWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGDesktopIconWindowLevel"),
+              Napi::Function::New(env, GetKCGDesktopIconWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGBackstopMenuLevel"),
+              Napi::Function::New(env, GetKCGBackstopMenuLevel));
+  exports.Set(Napi::String::New(env, "GetKCGNormalWindowLevel"),
+              Napi::Function::New(env, GetKCGNormalWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGFloatingWindowLevel"),
+              Napi::Function::New(env, GetKCGFloatingWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGTornOffMenuWindowLevel"),
+              Napi::Function::New(env, GetKCGTornOffMenuWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGModalPanelWindowLevel"),
+              Napi::Function::New(env, GetKCGModalPanelWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGUtilityWindowLevel"),
+              Napi::Function::New(env, GetKCGUtilityWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGDockWindowLevel"),
+              Napi::Function::New(env, GetKCGDockWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGMainMenuWindowLevel"),
+              Napi::Function::New(env, GetKCGMainMenuWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGStatusWindowLevel"),
+              Napi::Function::New(env, GetKCGStatusWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGPopUpMenuWindowLevel"),
+              Napi::Function::New(env, GetKCGPopUpMenuWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGOverlayWindowLevel"),
+              Napi::Function::New(env, GetKCGOverlayWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGHelpWindowLevel"),
+              Napi::Function::New(env, GetKCGHelpWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGDraggingWindowLevel"),
+              Napi::Function::New(env, GetKCGDraggingWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGScreenSaverWindowLevel"),
+              Napi::Function::New(env, GetKCGScreenSaverWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGAssistiveTechHighWindowLevel"),
+              Napi::Function::New(env, GetKCGAssistiveTechHighWindowLevel));
+  exports.Set(Napi::String::New(env, "GetKCGCursorWindowLevel"),
+              Napi::Function::New(env, GetKCGCursorWindowLevel));
+  exports.Set(Napi::String::New(env, "SetLevel"),
+              Napi::Function::New(env, SetLevel));
 
   return exports;
 }
 
-NAPI_MODULE(AppKitNAPI, Init)
+NODE_API_MODULE(AppKitNAPI, Init)
