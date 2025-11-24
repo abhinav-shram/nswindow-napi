@@ -1,280 +1,230 @@
-#import <AppKit/AppKit.h>
 #include "NSWindow.h"
+#import <AppKit/AppKit.h>
 
 /*
-NSWindow.collectionBehavior: https://developer.apple.com/documentation/appkit/nswindow/1419471-collectionbehavior?language=objc
+NSWindow.collectionBehavior:
+https://developer.apple.com/documentation/appkit/nswindow/1419471-collectionbehavior?language=objc
 */
-napi_value GetNSWindowCollectionBehaviorDefault(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorDefault, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorDefault(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(),
+                           (int)(size_t)NSWindowCollectionBehaviorDefault);
 }
-napi_value GetNSWindowCollectionBehaviorCanJoinAllSpaces(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorCanJoinAllSpaces, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorCanJoinAllSpaces(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(), (int)(size_t)NSWindowCollectionBehaviorCanJoinAllSpaces);
 }
-napi_value GetNSWindowCollectionBehaviorMoveToActiveSpace(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorMoveToActiveSpace, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorMoveToActiveSpace(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(), (int)(size_t)NSWindowCollectionBehaviorMoveToActiveSpace);
 }
-napi_value GetNSWindowCollectionBehaviorManaged(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorManaged, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorManaged(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(),
+                           (int)(size_t)NSWindowCollectionBehaviorManaged);
 }
-napi_value GetNSWindowCollectionBehaviorTransient(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorTransient, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorTransient(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(),
+                           (int)(size_t)NSWindowCollectionBehaviorTransient);
 }
-napi_value GetNSWindowCollectionBehaviorStationary(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorStationary, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorStationary(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(),
+                           (int)(size_t)NSWindowCollectionBehaviorStationary);
 }
-napi_value GetNSWindowCollectionBehaviorParticipatesInCycle(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorParticipatesInCycle, &value);
-  return value;
+Napi::Value GetNSWindowCollectionBehaviorParticipatesInCycle(
+    const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(), (int)(size_t)NSWindowCollectionBehaviorParticipatesInCycle);
 }
-napi_value GetNSWindowCollectionBehaviorIgnoresCycle(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorIgnoresCycle, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorIgnoresCycle(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(),
+                           (int)(size_t)NSWindowCollectionBehaviorIgnoresCycle);
 }
-napi_value GetNSWindowCollectionBehaviorFullScreenPrimary(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorFullScreenPrimary, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorFullScreenPrimary(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(), (int)(size_t)NSWindowCollectionBehaviorFullScreenPrimary);
 }
-napi_value GetNSWindowCollectionBehaviorFullScreenAuxiliary(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorFullScreenAuxiliary, &value);
-  return value;
+Napi::Value GetNSWindowCollectionBehaviorFullScreenAuxiliary(
+    const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(), (int)(size_t)NSWindowCollectionBehaviorFullScreenAuxiliary);
 }
-napi_value GetNSWindowCollectionBehaviorFullScreenNone(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorFullScreenNone, &value);
-  return value;
+Napi::Value
+GetNSWindowCollectionBehaviorFullScreenNone(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(), (int)(size_t)NSWindowCollectionBehaviorFullScreenNone);
 }
-napi_value GetNSWindowCollectionBehaviorFullScreenAllowsTiling(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorFullScreenAllowsTiling, &value);
-  return value;
+Napi::Value GetNSWindowCollectionBehaviorFullScreenAllowsTiling(
+    const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(),
+      (int)(size_t)NSWindowCollectionBehaviorFullScreenAllowsTiling);
 }
-napi_value GetNSWindowCollectionBehaviorFullScreenDisallowsTiling(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)NSWindowCollectionBehaviorFullScreenDisallowsTiling, &value);
-  return value;
+Napi::Value GetNSWindowCollectionBehaviorFullScreenDisallowsTiling(
+    const Napi::CallbackInfo &info) {
+  return Napi::Number::New(
+      info.Env(),
+      (int)(size_t)NSWindowCollectionBehaviorFullScreenDisallowsTiling);
 }
 
-napi_value SetCollectionBehavior(napi_env env, napi_callback_info info) {
-  napi_status status;
+void SetCollectionBehavior(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
 
-  size_t argc = 2;
-  napi_value args[2];
-  status = napi_get_cb_info(env, info, &argc, args, 0, 0);
-  if (status != napi_ok) {
-    napi_throw_error(env, NULL, "Fail to load.");
-    return NULL;
-  } else if (argc < 2) {
-    napi_throw_error(env, NULL, "Invalid argument size.");
-    return NULL;
+  if (info.Length() < 2) {
+    Napi::Error::New(env, "Invalid argument size.")
+        .ThrowAsJavaScriptException();
+    return;
   }
 
-  void *windowHandle;
-  size_t windowHandleLength;
-  status = napi_get_buffer_info(env, args[0], &windowHandle, &windowHandleLength);
-  if (status != napi_ok) {
-    napi_throw_error(env, NULL, "Can't read args[0]");
-    return NULL;
-  } else if (windowHandleLength == 0) {
-    napi_throw_error(env, NULL, "Emtpy window handle.");
-    return NULL;
+  if (!info[0].IsBuffer()) {
+    Napi::Error::New(env, "Argument 0 must be a Buffer.")
+        .ThrowAsJavaScriptException();
+    return;
+  }
+
+  void *windowHandle = info[0].As<Napi::Buffer<void *>>().Data();
+  if (windowHandle == nullptr) {
+    Napi::Error::New(env, "Empty window handle.").ThrowAsJavaScriptException();
+    return;
   }
 
   NSView *NSWindowView = *static_cast<NSView **>(windowHandle);
   if (![NSWindowView respondsToSelector:@selector(window)] ||
       NSWindowView.window == nil) {
-    napi_throw_error(env, NULL, "Fail to load NSView.");
-    return NULL;
+    Napi::Error::New(env, "Fail to load NSView.").ThrowAsJavaScriptException();
+    return;
   }
 
-  int collectionBehavior;
-  status = napi_get_value_int32(env, args[1], &collectionBehavior);
-  if (status != napi_ok) {
-    napi_throw_error(env, NULL, "Can't read args[1]");
-    return NULL;
+  if (!info[1].IsNumber()) {
+    Napi::Error::New(env, "Argument 1 must be a Number.")
+        .ThrowAsJavaScriptException();
+    return;
   }
+
+  int collectionBehavior = info[1].As<Napi::Number>().Int32Value();
 
   NSWindow *window = NSWindowView.window;
   [window setCollectionBehavior:collectionBehavior];
-
-  return NULL;
 }
 
 /*
-NSWindow.level: https://developer.apple.com/documentation/appkit/nswindow/1419511-level?language=objc
+NSWindow.level:
+https://developer.apple.com/documentation/appkit/nswindow/1419511-level?language=objc
 */
-napi_value GetKCGNumReservedWindowLevels(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGNumReservedWindowLevels, &value);
-  return value;
+Napi::Value GetKCGNumReservedWindowLevels(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGNumReservedWindowLevels);
 }
-napi_value GetKCGNumReservedBaseWindowLevels(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGNumReservedBaseWindowLevels, &value);
-  return value;
+Napi::Value GetKCGNumReservedBaseWindowLevels(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(),
+                           (int)(size_t)kCGNumReservedBaseWindowLevels);
 }
-napi_value GetKCGBaseWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGBaseWindowLevel, &value);
-  return value;
+Napi::Value GetKCGBaseWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGBaseWindowLevel);
 }
-napi_value GetKCGMinimumWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGMinimumWindowLevel, &value);
-  return value;
+Napi::Value GetKCGMinimumWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGMinimumWindowLevel);
 }
-napi_value GetKCGMaximumWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGMaximumWindowLevel, &value);
-  return value;
+Napi::Value GetKCGMaximumWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGMaximumWindowLevel);
 }
-napi_value GetKCGDesktopWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGDesktopWindowLevel, &value);
-  return value;
+Napi::Value GetKCGDesktopWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGDesktopWindowLevel);
 }
-napi_value GetKCGDesktopIconWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGDesktopIconWindowLevel, &value);
-  return value;
+Napi::Value GetKCGDesktopIconWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGDesktopIconWindowLevel);
 }
-napi_value GetKCGBackstopMenuLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGBackstopMenuLevel, &value);
-  return value;
+Napi::Value GetKCGBackstopMenuLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGBackstopMenuLevel);
 }
-napi_value GetKCGNormalWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGNormalWindowLevel, &value);
-  return value;
+Napi::Value GetKCGNormalWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGNormalWindowLevel);
 }
-napi_value GetKCGFloatingWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGFloatingWindowLevel, &value);
-  return value;
+Napi::Value GetKCGFloatingWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGFloatingWindowLevel);
 }
-napi_value GetKCGTornOffMenuWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGTornOffMenuWindowLevel, &value);
-  return value;
+Napi::Value GetKCGTornOffMenuWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGTornOffMenuWindowLevel);
 }
-napi_value GetKCGModalPanelWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGModalPanelWindowLevel, &value);
-  return value;
+Napi::Value GetKCGModalPanelWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGModalPanelWindowLevel);
 }
-napi_value GetKCGUtilityWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGUtilityWindowLevel, &value);
-  return value;
+Napi::Value GetKCGUtilityWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGUtilityWindowLevel);
 }
-napi_value GetKCGDockWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGDockWindowLevel, &value);
-  return value;
+Napi::Value GetKCGDockWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGDockWindowLevel);
 }
-napi_value GetKCGMainMenuWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGMainMenuWindowLevel, &value);
-  return value;
+Napi::Value GetKCGMainMenuWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGMainMenuWindowLevel);
 }
-napi_value GetKCGStatusWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGStatusWindowLevel, &value);
-  return value;
+Napi::Value GetKCGStatusWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGStatusWindowLevel);
 }
-napi_value GetKCGPopUpMenuWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGPopUpMenuWindowLevel, &value);
-  return value;
+Napi::Value GetKCGPopUpMenuWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGPopUpMenuWindowLevel);
 }
-napi_value GetKCGOverlayWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGOverlayWindowLevel, &value);
-  return value;
+Napi::Value GetKCGOverlayWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGOverlayWindowLevel);
 }
-napi_value GetKCGHelpWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGHelpWindowLevel, &value);
-  return value;
+Napi::Value GetKCGHelpWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGHelpWindowLevel);
 }
-napi_value GetKCGDraggingWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGDraggingWindowLevel, &value);
-  return value;
+Napi::Value GetKCGDraggingWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGDraggingWindowLevel);
 }
-napi_value GetKCGScreenSaverWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGScreenSaverWindowLevel, &value);
-  return value;
+Napi::Value GetKCGScreenSaverWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGScreenSaverWindowLevel);
 }
-napi_value GetKCGAssistiveTechHighWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGAssistiveTechHighWindowLevel, &value);
-  return value;
+Napi::Value GetKCGAssistiveTechHighWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(),
+                           (int)(size_t)kCGAssistiveTechHighWindowLevel);
 }
-napi_value GetKCGCursorWindowLevel(napi_env env, napi_callback_info info) {
-  napi_value value;
-  napi_create_int32(env, (int)(size_t)kCGCursorWindowLevel, &value);
-  return value;
+Napi::Value GetKCGCursorWindowLevel(const Napi::CallbackInfo &info) {
+  return Napi::Number::New(info.Env(), (int)(size_t)kCGCursorWindowLevel);
 }
 
-napi_value SetLevel(napi_env env, napi_callback_info info) {
-  napi_status status;
+void SetLevel(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
 
-  size_t argc = 2;
-  napi_value args[2];
-  status = napi_get_cb_info(env, info, &argc, args, 0, 0);
-  if (status != napi_ok) {
-    napi_throw_error(env, NULL, "Fail to load.");
-    return NULL;
-  } else if (argc < 2) {
-    napi_throw_error(env, NULL, "Invalid argument size.");
-    return NULL;
+  if (info.Length() < 2) {
+    Napi::Error::New(env, "Invalid argument size.")
+        .ThrowAsJavaScriptException();
+    return;
   }
 
-  void *windowHandle;
-  size_t windowHandleLength;
-  status = napi_get_buffer_info(env, args[0], &windowHandle, &windowHandleLength);
-  if (status != napi_ok) {
-    napi_throw_error(env, NULL, "Can't read args[0]");
-    return NULL;
-  } else if (windowHandleLength == 0) {
-    napi_throw_error(env, NULL, "Emtpy window handle.");
-    return NULL;
+  if (!info[0].IsBuffer()) {
+    Napi::Error::New(env, "Argument 0 must be a Buffer.")
+        .ThrowAsJavaScriptException();
+    return;
+  }
+
+  void *windowHandle = info[0].As<Napi::Buffer<void *>>().Data();
+  if (windowHandle == nullptr) {
+    Napi::Error::New(env, "Empty window handle.").ThrowAsJavaScriptException();
+    return;
   }
 
   NSView *NSWindowView = *static_cast<NSView **>(windowHandle);
   if (![NSWindowView respondsToSelector:@selector(window)] ||
       NSWindowView.window == nil) {
-    napi_throw_error(env, NULL, "Fail to load NSView.");
-    return NULL;
+    Napi::Error::New(env, "Fail to load NSView.").ThrowAsJavaScriptException();
+    return;
   }
 
-  int level;
-  status = napi_get_value_int32(env, args[1], &level);
-  if (status != napi_ok) {
-    napi_throw_error(env, NULL, "Can't read args[1]");
-    return NULL;
+  if (!info[1].IsNumber()) {
+    Napi::Error::New(env, "Argument 1 must be a Number.")
+        .ThrowAsJavaScriptException();
+    return;
   }
+
+  int level = info[1].As<Napi::Number>().Int32Value();
 
   NSWindow *window = NSWindowView.window;
   [window setLevel:level];
-
-  return NULL;
 }
