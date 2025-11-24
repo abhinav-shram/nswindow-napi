@@ -4,7 +4,7 @@
   "description": "A methods collection of using NSWindow native methods in Node.js.",
   "main": "index.js",
   "scripts": {
-    "install": "node -e \"if (process.platform === 'darwin') { require('child_process').spawnSync('node-gyp', ['rebuild', '--config=binding.mac.gyp'], {stdio: 'inherit', shell: true}) }\"",
+    "install": "node -e \"if (require('os').platform() === 'darwin') { require('child_process').spawnSync('node', ['install'], {stdio: 'inherit'}); }\"",
     "napi-build": "node-gyp rebuild",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/abhinav-shram/nswindow-napi/issues"
   },
-  "gypfile": false,
+  "gypfile": true,
   "os": [
     "darwin"
   ],

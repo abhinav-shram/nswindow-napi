@@ -502,7 +502,6 @@
     "nodedir": "/Users/apple/Library/Caches/node-gyp/24.8.0",
     "python": "/opt/homebrew/opt/python@3.14/bin/python3.14",
     "standalone_static_library": 1,
-    "config": "binding.mac.gyp",
     "global_prefix": "/opt/homebrew",
     "local_prefix": "/Users/apple/Documents/ShramRepos/Untitled/nswindow-napi",
     "globalconfig": "/opt/homebrew/etc/npmrc",
